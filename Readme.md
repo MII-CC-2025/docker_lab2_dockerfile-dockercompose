@@ -41,6 +41,32 @@ En un entorno de Python se instalarían con:
 ```
 $ pip install -r requirements.txt
 ```
+
+Además, creamos la vista index.html en la carpeta templates:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Welcome {{name}}!</h1>
+    
+    <h4>Hostname: {{hostname}}!</h4>
+
+    <p><b>Visits:</b> {{visits}}</p>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+```
+
+
 Una vez definida la aplicación, vamos a crear una imagen a partir de un Dockerfile para nuestra aplicación y la ejecutaremos en un contenedor.
 
 ## 1. Fichero Dockerfile
@@ -48,7 +74,7 @@ Una vez definida la aplicación, vamos a crear una imagen a partir de un Dockerf
 
 ```
 # Use an official Python runtime as a parent image
-FROM python:3.7-slim
+FROM python:3.10-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -66,7 +92,8 @@ EXPOSE 8080
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+ENTRYPOINT ["python"]
+CMD ["app.py"]
 ```
 
 ## 2. Construir la imagen 
@@ -176,7 +203,8 @@ Docker Compose version v2.26.1
 
 ## 2. Crear el fichero docker-compose.yml con los servicios, volúmenes, etc.
 ```
-version: '3.9'
+name: webapp
+
 services:
   redis:
     image: redis
@@ -190,6 +218,7 @@ services:
       - "8080:8080"
     depends_on:
       - redis
+
 volumes:
   redis-vol:
     name: redis-vol

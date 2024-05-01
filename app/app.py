@@ -13,7 +13,7 @@ def hello():
     try:
         visits = redis.incr("counter")
     except RedisError:
-        visits = "Cannot connect to Redis, counter disabled"
+        visits = "Error: Cannot connect to Redis, counter disabled"
     name=os.getenv("NAME", "world")
     hostname=socket.gethostname()
     return render_template('index.html', name=name, hostname=hostname, visits=visits)

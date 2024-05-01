@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.7-slim
+FROM python:3.10-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -17,4 +17,5 @@ EXPOSE 8080
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+ENTRYPOINT ["python"]
+CMD ["app.py"]
