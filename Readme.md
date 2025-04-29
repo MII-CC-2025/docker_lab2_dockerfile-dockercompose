@@ -28,16 +28,20 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
 ```
 
-Como vemos, se importan los paquetes Flask y Redis, se crea una conexión con un almacenamiento Redis que estaría ubicado en un host llamado redis y una vez iniciado el programa, atenderá peticiones desde cualquier host, por el puerto 80 y ejecutará la función hello que obtendrá el objeto counter del almacenamiento Redis, lo incrementará y lo guardará en la variable visits. Si se produce algún error durante la conexión con Redis, se guardará en la variable visist un mensaje indicando el error.
+Como vemos, se importan los paquetes Flask y Redis, se crea una conexión con un almacenamiento Redis que estaría ubicado en un host llamado redis 
+y una vez iniciado el programa, atenderá peticiones desde cualquier host, por el puerto 80 y ejecutará la función hello que obtendrá el objeto counter
+del almacenamiento Redis, lo incrementará y lo guardará en la variable visits. 
+Si se produce algún error durante la conexión con Redis, se guardará en la variable visist un mensaje indicando el error.
 
-Este código tiene como dependencias los paquetes Flask y Redis, que necesitamos instalar mediante el instalador de paquetes de Python (pip). Para ello, vamos a crear un fichero requirements.txt incluyendo estas dependencias.
+Este código tiene como dependencias los paquetes Flask y Redis, que necesitamos instalar mediante el instalador de paquetes de Python (pip). 
+Para ello, vamos a crear un fichero requirements.txt incluyendo estas dependencias.
 
 ```
 # requirements.txt
 Flask
 Redis
 ```
-En un entorno de Python se instalarían con:
+En un entorno virtual de Python se instalarían con:
 ```
 $ pip install -r requirements.txt
 ```
