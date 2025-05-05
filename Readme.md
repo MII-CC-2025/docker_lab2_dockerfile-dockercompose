@@ -207,7 +207,6 @@ Docker Compose version v2.26.1
 
 ## 2. Crear el fichero docker-compose.yml con los servicios, volúmenes, etc.
 ```
-name: webapp
 
 services:
   redis:
